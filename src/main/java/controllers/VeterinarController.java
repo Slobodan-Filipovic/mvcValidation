@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import config.MojExceptionHandler;
+import models.Usluga;
 import models.Veterinar;
+import services.interfaces.IPregledService;
 import services.interfaces.IVeterinarService;
 
 @RestController
@@ -26,6 +28,9 @@ public class VeterinarController {
 	
 	@Autowired
 	IVeterinarService veterinarService;
+	
+	@Autowired
+	IPregledService pregledService;
 	
 	@Autowired
 	@Qualifier("veterinarValidator")
@@ -63,6 +68,12 @@ public class VeterinarController {
 			throw new MojExceptionHandler("Nema ovog: " + id);
 		}
 		return vet;
+	}
+	
+	/*Pravimo endpoint*/
+	@RequestMapping(path = "/uslugeForVet/{id}", method = RequestMethod.GET)
+	public List<Usluga> getAllUsluge(@PathVariable int id){
+		return pregledService.getUslugaForVeterinarId(id);		
 	}
  
 	

@@ -20,7 +20,34 @@ public class VeterinarRepositoryImpl implements IVeterinarRepository {
 		vetList.add(new Veterinar(3, "zika", "zikic", "789"));
 		vetList.add(new Veterinar(4, "joca", "jocic", "321"));
 	}
-
+	 
+	@Override
+	public Veterinar updateVeterinar(int id, Veterinar v) {
+		Veterinar tempVet = new Veterinar();
+		 for(int i = 0; i < vetList.size(); i++) {
+			 if(id == vetList.get(i).getId()) {
+				 tempVet = vetList.get(i);
+				 tempVet.setName(v.getName());
+				 tempVet.setLastName(v.getLastName());
+				 tempVet.setTelephone(v.getTelephone());
+			 }
+		 }
+		 return tempVet;
+	}
+	/*Sexy lambda
+	 * @Override
+	public void editVeterinar(Veterinar veterinar) {
+		// TODO Auto-generated method stub
+		
+		Veterinar vet = mockVeterinars.stream().filter(x -> x.getId() == veterinar.getId()).findFirst().orElse(null);
+//		vet.setId(veterinar.getId());
+		if(vet != null) {
+			vet.setName(veterinar.getName());
+			vet.setLastname(veterinar.getLastname());
+			vet.setTelephone(veterinar.getTelephone());
+		}
+	 * */
+ 
 	public List<Veterinar> getAll() {
 		return vetList;
 		/*
@@ -40,7 +67,9 @@ public class VeterinarRepositoryImpl implements IVeterinarRepository {
 	}
 
 	public void deleteVeterinar(int id) {
-		vetList.remove(id);
+		for(int i = 0; i < vetList.size(); i++) {
+			if(vetList.get(i).getId() == id) vetList.remove(i);
+		}
 	}
 	/*
 	 * public Veterinar getVetById(int id) { for(Veterinar vet : vetList) {
@@ -63,4 +92,6 @@ public class VeterinarRepositoryImpl implements IVeterinarRepository {
 	 * mockVeterinars.stream().filter(x -> x.getId() ==
 	 * id).findFirst().orElse(null); }
 	 */
+
+	
 }

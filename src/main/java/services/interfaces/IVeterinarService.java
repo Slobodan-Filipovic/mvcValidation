@@ -9,6 +9,7 @@ public interface IVeterinarService {
 	public void addVet(Veterinar vet);
 	public void deleteVeterinar(int id);
 	public Veterinar getVetById(int id);
+	public Veterinar updateVeterinar(int id, Veterinar v);
 	
 	 
 }

@@ -9,5 +9,6 @@ public interface IVeterinarRepository {
 	void addVeterinar(Veterinar v);
 	void deleteVeterinar(int id);
 	Veterinar getVetById(int id);
+	Veterinar updateVeterinar(int id, Veterinar v);
 
 }

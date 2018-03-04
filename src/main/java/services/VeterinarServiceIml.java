@@ -32,5 +32,9 @@ public class VeterinarServiceIml implements IVeterinarService {
 		return veterinarRepository.getVetById(id);
 	}
 	
+	public Veterinar updateVeterinar(int id, Veterinar v) {
+		return veterinarRepository.updateVeterinar(id, v);
+	}
+	
 
 }
